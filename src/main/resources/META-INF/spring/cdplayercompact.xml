@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd"
+        xmlns:c="http://www.springframework.org/schema/c">
+    <bean id="cd"  class="com.gy.spring.chapter2.xmlconfig.SgtPeppers"/>
+
+    <!--构造器注入：对象类型-->
+    <bean id="cdPlayer" class="com.gy.spring.chapter2.xmlconfig.CDPlayer"
+         c:cd-ref="cd"/>
+
+    <!--构造器注入，基本类型-->
+    <bean id="blankDisc" class="com.gy.spring.chapter2.xmlconfig.BlankDisc"
+          c:_0="Sgt. Pepper's Lonely Hearts Club Band" c:_1="The Beatles"/>
+
+    <!--构造器注入，简单集合-->
+    <bean id="blankDiscWithTrack" class="com.gy.spring.chapter2.xmlconfig.collection.BlankDisc">
+        <constructor-arg value="Sgt. Pepper's Lonely Hearts Club Band"/>
+        <constructor-arg value="The Beatles"/>
+        <constructor-arg>
+            <list>
+                <value>Sgt. Pepper's Lonely Hearts Club Band</value>
+                <value>With a Little Help from My Friends</value>
+                <value>Lucy in the Sky with Diamonds</value>
+                <value>Getting Better</value>
+                <value>Fixing a Hole</value>
+            </list>
+        </constructor-arg>
+
+    </bean>
+</beans>

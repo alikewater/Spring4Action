@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="cd"  class="com.gy.spring.chapter2.xmlconfig.SgtPeppers"/>
+
+    <!--构造器注入：对象类型-->
+    <bean id="cdPlayer" class="com.gy.spring.chapter2.xmlconfig.CDPlayer">
+
+    </bean>
+
+    <!--构造器注入，基本类型-->
+    <bean id="blankDisc" class="com.gy.spring.chapter2.xmlconfig.BlankDisc">
+        <constructor-arg name="title" value="xxxxxxxxSgt. Pepper's Lonely Hearts Club Band"/>
+        <constructor-arg name="artist" value="The Beatles"/>
+    </bean>
+    <!--xml配置时，依赖是通过id查找的，如果不加primary，则不存在主依赖，那么如果类定义
+    中所有实现接口的id与注入时寻找的标识（参数名称）不一致时，将会出现找不到的异常，加入primary
+    之后，如果找不到id和参数名匹配的bean会自动提取primary bean-->
+    <!--构造器注入，简单集合-->
+    <bean id="blankDiscWithTrack"
+          class="com.gy.spring.chapter2.xmlconfig.collection.BlankDisc"
+          primary="true">
+        <constructor-arg value="Sgt. Pepper's Lonely Hearts Club Band"/>
+        <constructor-arg value="The Beatles"/>
+        <constructor-arg>
+            <list>
+                <value>Sgt. Pepper's Lonely Hearts Club Band</value>
+                <value>With a Little Help from My Friends</value>
+                <value>Lucy in the Sky with Diamonds</value>
+                <value>Getting Better</value>
+                <value>Fixing a Hole</value>
+            </list>
+        </constructor-arg>
+
+    </bean>
+
+</beans>
